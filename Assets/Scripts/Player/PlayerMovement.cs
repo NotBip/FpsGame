@@ -14,14 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private float gravity = -9.8f; 
     private float jumpForce = 1.5f; 
     private float speedMultiplier = 1.5f; 
-    private bool lerpCrouch = false; 
     private bool isCrouching = false;
     private float crouchTimer = 1f; 
     
     private void Update()
     { 
         isGrounded = characterController.isGrounded;
-
 
         crouchTimer += Time.deltaTime; 
         float p = crouchTimer / 1; 
@@ -33,10 +31,8 @@ public class PlayerMovement : MonoBehaviour
             characterController.height = Mathf.Lerp(characterController.height, 2, p); 
 
         if(p > 1)
-        { 
-            lerpCrouch = false; 
             crouchTimer = 0f;
-        }
+    
 
     }
 
@@ -70,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
     {   
         isCrouching = crouching; 
         crouchTimer = 0; 
-        lerpCrouch = true; 
     }
 
 }

@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private PlayerLook playerLook; 
 
     private PlayerInput playerInput; 
-    private PlayerInput.OnFootActions onFoot; 
+    public PlayerInput.OnFootActions onFoot; 
     
     private void Awake()
     { 
@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
         onFoot.Sprint.canceled += ctx => playerMovement.sprint(false);  
         onFoot.Crouch.performed += ctx => playerMovement.crouch(true); 
         onFoot.Crouch.canceled += ctx => playerMovement.crouch(false); 
+        
         
     }
 

@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
 
-    public string promptMessage; 
+    [SerializeField] public string promptMessage; 
 
-    public void baseInteract()
+    public void BaseInteract()
     { 
         Interact();
     }
 
-    protected virtual void Interact()
-    { 
-        
-    }
+    protected virtual void Interact(){}
 
 }

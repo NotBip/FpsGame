@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private LayerMask layerMask; 
     [SerializeField] private PlayerUI playerUI; 
     [SerializeField] private InputManager inputManager; 
-
+    [SerializeField] Mask mask; 
 
     public void Update()
     {       
         playerUI.updateText(string.Empty); 
+        mask.showMaskGraphic = false;  
         Ray ray = new Ray(cam.transform.position, cam.transform.forward); 
         Debug.DrawRay(ray.origin, ray.direction * distance); 
         RaycastHit hitInfo; 
@@ -22,7 +24,7 @@ public class PlayerInteract : MonoBehaviour
             
             if(hitInfo.collider.GetComponent<Interactable>() != null) {     
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>(); 
-
+                mask.showMaskGraphic = true; 
                 playerUI.updateText(interactable.promptMessage); 
 
                 if(inputManager.onFoot.Interact.triggered) {

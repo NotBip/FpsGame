@@ -8,16 +8,6 @@ public class Door : Interactable
 
     private bool doorOpen = false; 
     
-    private void Start()
-    { 
-
-    }
-    
-    private void Update()
-    { 
-
-    }
-
     protected override void Interact()
     {   
         doorOpen = !doorOpen; 

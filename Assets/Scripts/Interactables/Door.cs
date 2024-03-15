@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Door : Interactable
 {       
 
-    private bool doorOpen; 
+    private bool doorOpen = false; 
     
     private void Start()
     { 
@@ -21,6 +21,6 @@ public class Door : Interactable
     protected override void Interact()
     {   
         doorOpen = !doorOpen; 
-        this.GetComponent<Animator>().SetBool("isOpen", true); 
+        this.GetComponent<Animator>().SetBool("isOpen", doorOpen); 
     }
 }

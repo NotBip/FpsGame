@@ -7,32 +7,43 @@ public class PlayerHealth : MonoBehaviour
 {   
     private float health; 
     private float lerpTimer; 
-
+    private float durationTimer; 
     [SerializeField] private float maxHealth = 100f; 
     [SerializeField] private float chipSpeed = 2f; 
     [SerializeField] private Image frontHealth; 
     [SerializeField] private Image backHealth; 
 
+    [SerializeField] private Image DamageOverlay; 
+    [SerializeField] private float duration; 
+    [SerializeField] private float fadeSpeed; 
+    
+
     private void Start() 
     { 
         health = maxHealth; 
+        DamageOverlay.color = new Color(DamageOverlay.color.r, DamageOverlay.color.g, DamageOverlay.color.b, 0); 
     }
 
     private void Update() 
     { 
         health = Mathf.Clamp(health, 0, maxHealth); 
         updateHealth(); 
-        if(Input.GetKeyDown(KeyCode.K)) 
-            takeDamage(Random.Range(5, 10)); 
 
-        if(Input.GetKeyDown(KeyCode.L))
-            restoreHealth(Random.Range(5, 10)); 
+        if(DamageOverlay.color.a > 0) { 
+            if(health < 25)
+                return;
+            durationTimer += Time.deltaTime;    
+            if(durationTimer > duration) { 
+                float tempAlpha = DamageOverlay.color.a; 
+                tempAlpha -= Time.deltaTime * fadeSpeed; 
+                DamageOverlay.color = new Color(DamageOverlay.color.r, DamageOverlay.color.g, DamageOverlay.color.b, tempAlpha); 
+            }
+        }
         
     }
 
     public void updateHealth() 
-    { 
-        Debug.Log(health); 
+    {   
         float fillF = frontHealth.fillAmount; 
         float fillB = backHealth.fillAmount; 
         float hFraction = health / maxHealth; 
@@ -59,6 +70,9 @@ public class PlayerHealth : MonoBehaviour
     { 
         health -= damage; 
         lerpTimer = 0; 
+        durationTimer = 0f; 
+        DamageOverlay.color = new Color(DamageOverlay.color.r, DamageOverlay.color.g, DamageOverlay.color.b, 1); 
+
     }
 
     public void restoreHealth(float healAmount)

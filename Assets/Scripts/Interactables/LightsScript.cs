@@ -9,7 +9,7 @@ public class LightsScript : MonoBehaviour
 
     private bool isLights = false; 
 
-    private void Update()
+    private void Update()   
      {
         if(isLights)
             light.intensity = 1; 
@@ -19,7 +19,6 @@ public class LightsScript : MonoBehaviour
 
     public void lightSwitch()
     {
-        Debug.Log("Light Toggled");
         isLights = !isLights; 
     }
 

@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private Vector3 playerVelocity; 
-    private float gravity = -9.8f; 
+    private float gravity = -19.6f; 
     private float jumpForce = 1f; 
     private float speedMultiplier = 1.5f; 
     private bool isCrouching = false;
